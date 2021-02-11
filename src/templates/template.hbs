@@ -7,5 +7,13 @@
 
 
 {{#each this}}
-<h2>{{name}}</h2>
+<h2 class="country__title">{{name}}</h2>
+<div class="counry__info">
+    <div class="country__content">
+        <p class="country__text">Capital:<span class="country__value">{{capital}}</span></p>
+        <p class="country__text">Population:<span class="country__value">{{population}}</span></p>
+        <p class="country__text country__text--languages">Languages:<span class="country__value">{{this.languages}}</span></p>
+    </div>
+    <img width="300" height="300" class="country__flag" src="{{flag}}" alt="{{name}} flag">
+</div>
 {{/each}}

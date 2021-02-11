@@ -1,4 +1,4 @@
-import './styles.css';
+import './styles.scss';
 import fotosTpl from './templates/template.hbs';
 import fetchCountries from './js/fetchCountries';
 import template from './templates/template.hbs';
@@ -12,7 +12,7 @@ const countruMarkupRef = document.querySelector('.country__markup');
 
 
 
-inputRef.addEventListener('input', inputHandler);
+inputRef.addEventListener('change', inputHandler);
 
 function inputHandler() {
 
@@ -27,8 +27,17 @@ function inputHandler() {
 
 function updateMarkup(array) {
 
-  const markup = template(array);
+  let markup; 
 
-  console.log(36, markup);
+  if (array.length === 1) {
+    markup = template(array);
+  } else {
+    markup = 'error';
+  }
+
+  console.log(array);
+
+  countruMarkupRef.insertAdjacentHTML('beforeend', markup);
+  
   
 }
