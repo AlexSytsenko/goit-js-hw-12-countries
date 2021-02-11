@@ -14,6 +14,11 @@ img {
     height: auto;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif,
@@ -55,16 +60,23 @@ color: springgreen;
   font-weight: 700;
 }
 
-.country__text--languages {
-  display: flexbox;
-  flex-direction: column;
-}
 .country__value {
   margin-left: 15px;
   font-size: 20px;
   font-weight: 500;
 }
 
+.country-languages__list {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.country-languages__item {
+  margin-left: 30px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
 .country__flag {
-  
+  border: 2px solid black;
 }

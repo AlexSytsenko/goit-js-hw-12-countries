@@ -12,7 +12,12 @@
     <div class="country__content">
         <p class="country__text">Capital:<span class="country__value">{{capital}}</span></p>
         <p class="country__text">Population:<span class="country__value">{{population}}</span></p>
-        <p class="country__text country__text--languages">Languages:<span class="country__value">{{this.languages}}</span></p>
+        {{!-- <p class="country__text country__text--languages">Languages:<span class="country__value">{{languages.name}}</span></p> --}}
+        <ul class="country-languages__list">Languages:
+            {{#each languages}}
+            <li class="country-languages__item">{{name}}</li>
+            {{/each}}
+        </ul>
     </div>
     <img width="300" height="300" class="country__flag" src="{{flag}}" alt="{{name}} flag">
 </div>

@@ -1,13 +1,15 @@
 import './styles.scss';
-import fotosTpl from './templates/template.hbs';
 import fetchCountries from './js/fetchCountries';
-import template from './templates/template.hbs';
+import templateOneCountry from './templates/template-one-country.hbs';
+import templateCountrysList from './templates/template-countrys-list.hbs';
+
+
 
 
 
 
 const inputRef = document.querySelector('.search');
-const countruMarkupRef = document.querySelector('.country__markup');
+const countryMarkupRef = document.querySelector('.country__markup');
 
 
 
@@ -30,14 +32,16 @@ function updateMarkup(array) {
   let markup; 
 
   if (array.length === 1) {
-    markup = template(array);
-  } else {
-    markup = 'error';
+    markup = templateOneCountry(array);
   }
-
-  console.log(array);
-
-  countruMarkupRef.insertAdjacentHTML('beforeend', markup);
+  else if (array.length > 1 && array.length <= 10) {
+    markup = templateCountrysList(array);
+  } else {
+    alert('Пожалуйста введите более конкретнее запрос');
+    return;
+  }
+  countryMarkupRef.innerHTML = '';
+  countryMarkupRef.insertAdjacentHTML('beforeend', markup);
   
   
 }
