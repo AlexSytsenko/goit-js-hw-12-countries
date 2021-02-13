@@ -4,20 +4,15 @@ import '@pnotify/core/dist/PNotify.css';
 
 defaults.delay = 3000;
 
-function specifyQueryNotification() {
-const specifyQuery = error({
-    text: "Too many matches found. Please enter a more specific query!",
-});
-    
-    return specifyQuery;
-}
 
-function errorNotification() {
+function errorNotification(value) {
+
+    const errorText = value === 404 ? "Please specify your request" : "Too many matches found. Please enter a more specific query!";
 const statusError = error({
-    text: "Please specify your request",
+    text: `${errorText}`,
 });
     
     return statusError;
 }
 
-export  { specifyQueryNotification, errorNotification };
+export default errorNotification;
