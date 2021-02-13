@@ -11,6 +11,11 @@ let debounce = require('lodash.debounce');
 const inputRef = document.querySelector('.search');
 const countryMarkupRef = document.querySelector('.country__markup');
 
+if (localStorage.getItem('country')) {
+  inputRef.value = localStorage.getItem('country');
+  inputHandler();
+}
+
 // Handlers
 inputRef.addEventListener('input', debounce(inputHandler, 500));
 
@@ -20,15 +25,21 @@ function inputHandler() {
   clearMarkup();
 
   const searchQuery = inputRef.value;
+
+  if (!searchQuery) {
+    localStorage.removeItem('country');
+    return;
+  }
+
+  console.log(searchQuery);
   
   fetchCountries(searchQuery).then(array => {
-    createMarkup(array);
+    createMarkup(array, searchQuery);
   });
   
 }
 
-
-function createMarkup(array) {
+function createMarkup(array, searchQuery) {
 
   let markup; 
 
@@ -44,6 +55,7 @@ function createMarkup(array) {
     return;
   }
   updateMarkup(markup);
+  localStorage.setItem("country", searchQuery);
 }
 
 function updateMarkup(value) {
