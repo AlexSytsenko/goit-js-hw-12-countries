@@ -1,18 +1,9 @@
-{{!-- {{#each this}}
-<li>
-    <img src="{{largeImageURL}}" alt="">
-    <h2><a href="{{pageURL}}" target="_blank" rel="noopener noreferrer">{{tags}}</a></h2>
-</li>
-{{/each}} --}}
-
-
 {{#each this}}
 <h2 class="country__title">{{name}}</h2>
 <div class="counry__info">
     <div class="country__content">
         <p class="country__text">Capital:<span class="country__value">{{capital}}</span></p>
         <p class="country__text">Population:<span class="country__value">{{population}}</span></p>
-        {{!-- <p class="country__text country__text--languages">Languages:<span class="country__value">{{languages.name}}</span></p> --}}
         <ul class="country-languages__list">Languages:
             {{#each languages}}
             <li class="country-languages__item">{{name}}</li>

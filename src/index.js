@@ -7,8 +7,6 @@ import countryLocalStorage from './js/local-storage-country';
 
 let debounce = require('lodash.debounce');
 
-
-
 const inputRef = document.querySelector('.search');
 const countryMarkupRef = document.querySelector('.country__markup');
 
@@ -16,10 +14,6 @@ if (countryLocalStorage.get) {
   inputRef.value = countryLocalStorage.get();
   inputHandler();
 }
-
-// Handlers
-inputRef.addEventListener('input', debounce(inputHandler, 500));
-
 
 function inputHandler() {
 
@@ -46,6 +40,7 @@ function createMarkup(array, searchQuery) {
 
   if (array.status === 404) {
     errorNotification(array.status);
+    countryLocalStorage.clear();
     return;
   } else if (array.length === 1) {
     markup = templateOneCountry(array);
@@ -53,6 +48,7 @@ function createMarkup(array, searchQuery) {
     markup = templateCountrysList(array);
   } else {
     errorNotification();
+    countryLocalStorage.clear();
     return;
   }
   updateMarkup(markup);
@@ -66,3 +62,7 @@ countryMarkupRef.insertAdjacentHTML('beforeend', value);
 function clearMarkup() {
   countryMarkupRef.innerHTML = '';
 }
+
+
+// Handlers
+inputRef.addEventListener('input', debounce(inputHandler, 500));
