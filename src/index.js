@@ -3,6 +3,7 @@ import fetchCountries from './js/fetchCountries';
 import templateOneCountry from './templates/template-one-country.hbs';
 import templateCountrysList from './templates/template-countrys-list.hbs';
 import errorNotification from './js/notification';
+import countryLocalStorage from './js/local-storage-country';
 
 let debounce = require('lodash.debounce');
 
@@ -11,8 +12,8 @@ let debounce = require('lodash.debounce');
 const inputRef = document.querySelector('.search');
 const countryMarkupRef = document.querySelector('.country__markup');
 
-if (getFromLocalStorage('country')) {
-  inputRef.value = getFromLocalStorage('country');
+if (countryLocalStorage.get) {
+  inputRef.value = countryLocalStorage.get();
   inputHandler();
 }
 
@@ -27,7 +28,7 @@ function inputHandler() {
   const searchQuery = inputRef.value;
 
   if (!searchQuery) {
-    clearLocalStorage('country');
+    countryLocalStorage.clear();
     return;
   }
 
@@ -55,7 +56,7 @@ function createMarkup(array, searchQuery) {
     return;
   }
   updateMarkup(markup);
-  setToLocalStorage("country", searchQuery);
+  countryLocalStorage.set(searchQuery);
 }
 
 function updateMarkup(value) {
@@ -65,16 +66,3 @@ countryMarkupRef.insertAdjacentHTML('beforeend', value);
 function clearMarkup() {
   countryMarkupRef.innerHTML = '';
 }
-
-function setToLocalStorage(key, value) {
-  localStorage.setItem(key, value);
-}
-
-function getFromLocalStorage(key) {
-  return localStorage.getItem(key);
-}
-
-function clearLocalStorage(key) {
-  localStorage.removeItem(key);
-}
-
