@@ -25,8 +25,6 @@ function inputHandler() {
     countryLocalStorage.clear();
     return;
   }
-
-  console.log(searchQuery);
   
   fetchCountries(searchQuery).then(array => {
     createMarkup(array, searchQuery);

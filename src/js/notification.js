@@ -6,7 +6,7 @@ defaults.delay = 3000;
 
 function errorNotification(value) {
 
-    const errorText = value === 404 ? "Please specify your request" : "Too many matches found. Please enter a more specific query!";
+    const errorText = value === 404 ? "Error. Not found" : "Too many matches found. Please enter a more specific query!";
     const statusError = error({
     text: `${errorText}`,
 });
